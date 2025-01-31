@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Web Page</title>
+    <link rel="stylesheet" href="styling.css">
+</head>
+<body>
+    <div class="container">
+        <button class="btn" id="hoverBtn">Hover me!</button>
+        <div class="card" id="animatedCard">Click to animate me!</div>
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <span class="close-btn" id="closeModal">&times;</span>
+                <p>This is a modal!</p>
+            </div>
+        </div>
+        <button class="toggle-btn" id="toggleModal">Toggle Modal</button>
+    </div>
+
+    <script>
+        function calculateArea(length, width) {
+            return length * width;
+        }
+        
+        console.log('Area of Rectangle (5x10): ' + calculateArea(5, 10));
+        
+        let globalVar = "I am a global variable";
+        
+        function demonstrateScope() {
+            let localVar = "I am a local variable";
+            console.log(globalVar); 
+            console.log(localVar); 
+        }
+        
+        demonstrateScope();
+        const modal = document.getElementById('modal');
+        const toggleModalButton = document.getElementById('toggleModal');
+        const closeModalButton = document.getElementById('closeModal');
+        
+        function toggleModal() {
+            if (modal.style.display === 'flex') {
+                modal.style.display = 'none';
+            } else {
+                modal.style.display = 'flex';
+            }
+        }
+        
+        toggleModalButton.addEventListener('click', toggleModal);
+        closeModalButton.addEventListener('click', toggleModal);
+       
+        const hoverBtn = document.getElementById('hoverBtn');
+        hoverBtn.addEventListener('mouseover', () => {
+            hoverBtn.style.transform = 'scale(1.1)';
+            hoverBtn.style.backgroundColor = '#45a049';
+        });
+        
+        hoverBtn.addEventListener('mouseout', () => {
+            hoverBtn.style.transform = 'scale(1)';
+            hoverBtn.style.backgroundColor = '#4CAF50';
+        });
+        
+        const card = document.getElementById('animatedCard');
+        
+        card.addEventListener('click', () => {
+            card.style.animation = 'none';
+            setTimeout(() => {
+                card.style.animation = 'slideIn 2s ease-in-out';
+            }, 10); 
+        });
+    </script>
+</body>
+</html>
